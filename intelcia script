@@ -1,0 +1,635 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2021-12-10 00:17:31
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 214 (class 1259 OID 24623)
+-- Name: admins; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.admins (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean
+);
+
+
+ALTER TABLE public.admins OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 24609)
+-- Name: chefdivisions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.chefdivisions (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean
+);
+
+
+ALTER TABLE public.chefdivisions OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 24602)
+-- Name: chefprojets; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.chefprojets (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean
+);
+
+
+ALTER TABLE public.chefprojets OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 24591)
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.clients (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean,
+    activite character(30),
+    contact character(40),
+    fax integer
+);
+
+
+ALTER TABLE public.clients OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 24650)
+-- Name: divisions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.divisions (
+    id integer NOT NULL,
+    chiffre_affaire integer,
+    raison_sociale character(10)
+);
+
+
+ALTER TABLE public.divisions OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 24662)
+-- Name: equipes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.equipes (
+    id integer NOT NULL,
+    numero integer,
+    nombre_employees character varying(10)
+);
+
+
+ALTER TABLE public.equipes OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 24630)
+-- Name: gestionstocks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.gestionstocks (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean
+);
+
+
+ALTER TABLE public.gestionstocks OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 24647)
+-- Name: materiels; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.materiels (
+    id integer NOT NULL,
+    numero integer,
+    nom character(40),
+    reference_constructeur character(30),
+    type character(10)
+);
+
+
+ALTER TABLE public.materiels OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 24642)
+-- Name: projets; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.projets (
+    id integer NOT NULL,
+    date_dechance date,
+    theme character(20),
+    numero character(20),
+    libelle character(40),
+    date_fin date,
+    date_debut date
+);
+
+
+ALTER TABLE public.projets OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 24616)
+-- Name: rhs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rhs (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean
+);
+
+
+ALTER TABLE public.rhs OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 24637)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    id integer NOT NULL,
+    nom character(20)
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 24588)
+-- Name: salaries; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.salaries (
+    id integer NOT NULL,
+    nom character(20),
+    prenom character(20),
+    email character(40),
+    adress text,
+    numero character(20),
+    telephone character(30),
+    password text,
+    status boolean,
+    commission integer,
+    fonction character(20),
+    renumeration double precision,
+    specialisation character(40)
+);
+
+
+ALTER TABLE public.salaries OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 24657)
+-- Name: taches; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.taches (
+    id integer NOT NULL,
+    nom character(20),
+    date_fin date,
+    date_debut date,
+    cout integer,
+    status boolean
+);
+
+
+ALTER TABLE public.taches OWNER TO postgres;
+
+--
+-- TOC entry 3394 (class 0 OID 24623)
+-- Dependencies: 214
+-- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.admins (id, nom, prenom, email, adress, numero, telephone, password, status) FROM stdin;
+2	hajar               	ayoubu              	ayoubo@gmail.com                        	qu nahda kech	8675758956          	667588658                     	hello	t
+\.
+
+
+--
+-- TOC entry 3392 (class 0 OID 24609)
+-- Dependencies: 212
+-- Data for Name: chefdivisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.chefdivisions (id, nom, prenom, email, adress, numero, telephone, password, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3391 (class 0 OID 24602)
+-- Dependencies: 211
+-- Data for Name: chefprojets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.chefprojets (id, nom, prenom, email, adress, numero, telephone, password, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3390 (class 0 OID 24591)
+-- Dependencies: 210
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.clients (id, nom, prenom, email, adress, numero, telephone, password, status, activite, contact, fax) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3399 (class 0 OID 24650)
+-- Dependencies: 219
+-- Data for Name: divisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.divisions (id, chiffre_affaire, raison_sociale) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3401 (class 0 OID 24662)
+-- Dependencies: 221
+-- Data for Name: equipes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.equipes (id, numero, nombre_employees) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3395 (class 0 OID 24630)
+-- Dependencies: 215
+-- Data for Name: gestionstocks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.gestionstocks (id, nom, prenom, email, adress, numero, telephone, password, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3398 (class 0 OID 24647)
+-- Dependencies: 218
+-- Data for Name: materiels; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.materiels (id, numero, nom, reference_constructeur, type) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3397 (class 0 OID 24642)
+-- Dependencies: 217
+-- Data for Name: projets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.projets (id, date_dechance, theme, numero, libelle, date_fin, date_debut) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3393 (class 0 OID 24616)
+-- Dependencies: 213
+-- Data for Name: rhs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rhs (id, nom, prenom, email, adress, numero, telephone, password, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3396 (class 0 OID 24637)
+-- Dependencies: 216
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.roles (id, nom) FROM stdin;
+2	admin               
+\.
+
+
+--
+-- TOC entry 3389 (class 0 OID 24588)
+-- Dependencies: 209
+-- Data for Name: salaries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.salaries (id, nom, prenom, email, adress, numero, telephone, password, status, commission, fonction, renumeration, specialisation) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3400 (class 0 OID 24657)
+-- Dependencies: 220
+-- Data for Name: taches; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.taches (id, nom, date_fin, date_debut, cout, status) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3222 (class 2606 OID 24627)
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admins
+    ADD CONSTRAINT admins_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 24613)
+-- Name: chefdivisions chefdivisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chefdivisions
+    ADD CONSTRAINT chefdivisions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 24606)
+-- Name: chefprojets chefprojets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chefprojets
+    ADD CONSTRAINT chefprojets_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 24597)
+-- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 24654)
+-- Name: divisions divisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.divisions
+    ADD CONSTRAINT divisions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 24666)
+-- Name: equipes equipes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.equipes
+    ADD CONSTRAINT equipes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 24634)
+-- Name: gestionstocks gestionstocks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gestionstocks
+    ADD CONSTRAINT gestionstocks_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 24656)
+-- Name: materiels materiels_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materiels
+    ADD CONSTRAINT materiels_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 24646)
+-- Name: projets projets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.projets
+    ADD CONSTRAINT projets_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 24620)
+-- Name: rhs rhs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rhs
+    ADD CONSTRAINT rhs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 24641)
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 24599)
+-- Name: salaries salaries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salaries
+    ADD CONSTRAINT salaries_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 24661)
+-- Name: taches taches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.taches
+    ADD CONSTRAINT taches_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3246 (class 2606 OID 24712)
+-- Name: projets fk_chefprojets; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.projets
+    ADD CONSTRAINT fk_chefprojets FOREIGN KEY (id) REFERENCES public.chefprojets(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3241 (class 2606 OID 24707)
+-- Name: chefprojets fk_division; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chefprojets
+    ADD CONSTRAINT fk_division FOREIGN KEY (id) REFERENCES public.divisions(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3238 (class 2606 OID 24727)
+-- Name: salaries fk_equipes; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salaries
+    ADD CONSTRAINT fk_equipes FOREIGN KEY (id) REFERENCES public.equipes(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3248 (class 2606 OID 24717)
+-- Name: taches fk_projets; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.taches
+    ADD CONSTRAINT fk_projets FOREIGN KEY (id) REFERENCES public.projets(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3237 (class 2606 OID 24667)
+-- Name: salaries fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.salaries
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3244 (class 2606 OID 24672)
+-- Name: admins fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admins
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3242 (class 2606 OID 24677)
+-- Name: chefdivisions fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chefdivisions
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3240 (class 2606 OID 24682)
+-- Name: chefprojets fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chefprojets
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3239 (class 2606 OID 24687)
+-- Name: clients fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3245 (class 2606 OID 24692)
+-- Name: gestionstocks fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gestionstocks
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3243 (class 2606 OID 24697)
+-- Name: rhs fk_roles; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rhs
+    ADD CONSTRAINT fk_roles FOREIGN KEY (id) REFERENCES public.roles(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3247 (class 2606 OID 24702)
+-- Name: materiels fk_salaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.materiels
+    ADD CONSTRAINT fk_salaries FOREIGN KEY (id) REFERENCES public.salaries(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3249 (class 2606 OID 24722)
+-- Name: taches fk_salaries; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.taches
+    ADD CONSTRAINT fk_salaries FOREIGN KEY (id) REFERENCES public.salaries(id) ON DELETE SET NULL;
+
+
+-- Completed on 2021-12-10 00:17:32
+
+--
+-- PostgreSQL database dump complete
+--
+
